@@ -1,8 +1,21 @@
 package controller;
 
-public class MainController {
-    public static void main(String[] args) {
+import view.MainView;
 
-        System.out.println("Hello world!");
+public class MainController {
+
+    private MainView view;
+
+    public MainController( MainView view ){
+        this.view = view;
     }
+
+    public static void main(String[] args) {
+       new MainController( new MainView( 500, 250 ));
+    }
+
+
+
+
+
 }
