@@ -25,7 +25,6 @@ public class RestAPIDAO{
 
     }
 
-
     /**
      * Json umwandeln in Java Objekt WeatherData
      * @param json
@@ -35,5 +34,4 @@ public class RestAPIDAO{
 
         return null;
     }
-
 }
