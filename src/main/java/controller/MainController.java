@@ -1,5 +1,6 @@
 package controller;
 
+import dao.RestAPIDAO;
 import view.MainView;
 
 import java.awt.event.ActionEvent;
@@ -11,6 +12,9 @@ public class MainController {
     public MainController( MainView view ){
         this.view = view;
         view.addButtonHandler( this::getWeatherData );
+
+        RestAPIDAO dao = new RestAPIDAO();
+        dao.getWeatherData(49,8);
     }
 
     public static void main(String[] args) {
