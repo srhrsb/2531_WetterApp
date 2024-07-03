@@ -45,6 +45,7 @@ public class MainView extends JFrame {
 
         centerPanel.setLayout( new GridLayout( 2, 2));
         centerPanel.setBorder( new EmptyBorder(5,5,5,5));
+
         centerPanel.add(longitudeLabel);
         centerPanel.add(longitudeTf);
         centerPanel.add(latitudeLabel);
