@@ -29,15 +29,10 @@ public class RestAPIDAO{
           HttpRequest request = HttpRequest.newBuilder( URI.create(uriString) ).build();
           CompletableFuture<HttpResponse<String>> future = client.sendAsync( request,HttpResponse.BodyHandlers.ofString() );
           future.thenAccept( this::handleResponse );
-
-
-
       }
       catch( Exception e){
           throw new RuntimeException(e);
       }
-
-
     }
 
     /**
