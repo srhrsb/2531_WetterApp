@@ -1,18 +1,22 @@
 package dao;
 
 import model.WeatherData;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
 
 public class RestAPIDAO{
 
-    public WeatherData getWeatherData( double longitude, double latitude ){
+    private Consumer<WeatherData> onSuccessCallback;
+    public void getWeatherData(double longitude, double latitude, Consumer<WeatherData> onSuccessCallback  ){
         sendRequest(latitude, longitude);
-        return null;
+        this.onSuccessCallback = onSuccessCallback;
     }
 
     /**
@@ -42,6 +46,13 @@ public class RestAPIDAO{
 
         System.out.println( response.body() );
 
+        if(response.statusCode() == 200 ){
+            var weatherData = getWeatherDataFromJson( response.body() );
+            onSuccessCallback.accept( weatherData );
+        }
+        else{
+            System.err.println("API response failed");
+        }
     }
 
     /**
@@ -51,6 +62,24 @@ public class RestAPIDAO{
      */
     private WeatherData getWeatherDataFromJson( String json ){
 
-        return null;
+        try{
+            JSONParser parser = new JSONParser();
+            JSONObject jsonObject = (JSONObject) parser.parse(json);
+
+            double longitude = (double) jsonObject.get("longitude");
+            double latitude = (double) jsonObject.get("latitude");
+
+            JSONObject current = (JSONObject) jsonObject.get("current");
+            double temperature = (double) current.get("temperature_2m");
+            double rain = (double) current.get("rain");
+            double wind = (double) current.get("wind_speed_10m");
+
+            WeatherData weatherData = new WeatherData(longitude, latitude,temperature,rain, wind );
+            return weatherData;
+
+        }
+        catch( Exception e ){
+            throw new RuntimeException(e);
+        }
     }
 }
