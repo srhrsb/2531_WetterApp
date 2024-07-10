@@ -16,6 +16,7 @@ public class MainController {
     public MainController( MainView view ){
         this.view = view;
         view.addButtonHandler( this::getWeatherData );
+        view.addMenuHandler( this::handleCoordsActivity);
     }
 
     public static void main(String[] args) {
@@ -75,5 +76,12 @@ public class MainController {
        view.showInfoWindow( weatherText );
     }
 
+    private void handleCoordsActivity( ActionEvent event ){
 
+        JComboBox<Locations> menu = (JComboBox<Locations>) event.getSource();
+        var location = menu.getSelectedItem();
+        Locations locations = (Locations) location;
+
+        view.enableCoords(locations == Locations.NONE);
+    }
 }

@@ -69,6 +69,14 @@ public class MainView extends JFrame {
         getWeatherDataBtn.addActionListener(listener);
      }
 
+     public void addMenuHandler( ActionListener listener){
+        locationPresetMenu.addActionListener( listener );
+     }
+
+     public void enableCoords( boolean active ){
+        latitudeTf.setEditable( active );
+        longitudeTf.setEditable( active );
+     }
 
      public double[] getCoords(){
 
