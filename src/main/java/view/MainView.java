@@ -62,4 +62,24 @@ public class MainView extends JFrame {
         getWeatherDataBtn.addActionListener(listener);
      }
 
+
+     public double[] getCoords(){
+
+        double longitude = 0;
+        double latitude = 0;
+
+        try{
+            longitude = Double.parseDouble( longitudeTf.getText() );
+            latitude = Double.parseDouble( latitudeTf.getText() );
+
+            longitude = Math.clamp(longitude, -180, 180);
+            latitude = Math.clamp(latitude, -180, 180);
+
+
+        }catch( Exception e){
+            throw new RuntimeException(e);
+        }
+
+        return new double[]{longitude, latitude};
+     }
 }
