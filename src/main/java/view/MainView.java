@@ -90,6 +90,13 @@ public class MainView extends JFrame {
         return new double[]{longitude, latitude};
      }
 
+     public Locations getLocationPreset(){
+        var item = locationPresetMenu.getSelectedItem();
+         System.out.println(item);
+        return (Locations) item;
+     }
+
+
      public void showInfoWindow( String text ){
         JOptionPane.showMessageDialog( this, text, "Info", JOptionPane.INFORMATION_MESSAGE );
      }
