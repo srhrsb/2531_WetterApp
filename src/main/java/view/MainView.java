@@ -82,4 +82,10 @@ public class MainView extends JFrame {
 
         return new double[]{longitude, latitude};
      }
+
+     public void showInfoWindow( String text ){
+        JOptionPane.showMessageDialog( this, text, "Info", JOptionPane.INFORMATION_MESSAGE );
+     }
+
+
 }
