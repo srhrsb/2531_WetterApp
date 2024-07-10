@@ -3,7 +3,7 @@ package model;
 public enum Locations {
     NONE,
     BERLIN,
-    WIEN,
+    WIEN ,
     PARIS,
     WARSCHAU,
     STOCKHOLM

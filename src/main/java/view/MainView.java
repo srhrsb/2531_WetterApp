@@ -1,5 +1,7 @@
 package view;
 
+import model.Locations;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -10,6 +12,7 @@ public class MainView extends JFrame {
      private  JButton getWeatherDataBtn;
      private JTextField longitudeTf, latitudeTf;
 
+     private JComboBox locationPresetMenu;
 
      public MainView( int width, int height ){
 
@@ -32,9 +35,11 @@ public class MainView extends JFrame {
         JPanel bottomPanel = new JPanel();
 
         getWeatherDataBtn = new JButton("Wetterdaten laden");
+        locationPresetMenu = new JComboBox(Locations.values());
         latitudeTf = new JTextField();
         longitudeTf = new JTextField();
 
+        JLabel presetLabel = new JLabel("Preset:");
         JLabel longitudeLabel = new JLabel("Longitude:");
         JLabel latitudeLabel = new JLabel("Latitude:");
 
@@ -43,9 +48,11 @@ public class MainView extends JFrame {
         //einfügen
         topPanel.add(topLabel);
 
-        centerPanel.setLayout( new GridLayout( 2, 2));
+        centerPanel.setLayout( new GridLayout( 3, 2));
         centerPanel.setBorder( new EmptyBorder(5,5,5,5));
 
+        centerPanel.add(presetLabel);
+        centerPanel.add(locationPresetMenu);
         centerPanel.add(longitudeLabel);
         centerPanel.add(longitudeTf);
         centerPanel.add(latitudeLabel);
